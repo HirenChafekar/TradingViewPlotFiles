@@ -1,0 +1,42 @@
+
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 5px solid #2E2E2E;
+}
+.top-bar-item:hover {
+  background-color: #2E2E2E;
+  border-radius: 4px;
+}
+
+.vertical-line {
+  height: 24px;
+  width: 1px;
+  margin: 0 10px;
+  background-color: white;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
