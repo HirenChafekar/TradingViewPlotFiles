@@ -1,54 +1,152 @@
-# React + TypeScript + Vite
+# TradingView-Style Multi-Chart with RSI Indicators
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A powerful, customizable TradingView-style chart implementation built with React, TypeScript, and lightweight-charts. This project features real-time RSI indicators, customizable settings, and a modern, responsive UI.
 
-Currently, two official plugins are available:
+![Chart Preview](public/chart-preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 📊 **Multiple Chart Types**
+  - Line charts
+  - Candlestick charts
+  - Customizable time intervals
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📈 **RSI Indicator**
+  - Real-time RSI calculations
+  - Customizable parameters
+  - Visual limit lines
+  - Interactive settings
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- 🎨 **Customizable Styling**
+  - Plot line styles (solid/dashed)
+  - Custom colors for indicators
+  - Limit line visibility
+  - Dark theme support
+
+- 🖱️ **Interactive Features**
+  - Crosshair with hover values
+  - Quick access to indicator settings
+  - Responsive design
+  - Smooth animations
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- lightweight-charts
+- Tailwind CSS (optional)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/tradingview-multichart.git
+cd tradingview-multichart
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies:
+```bash
+yarn install
+# or
+npm install
 ```
+
+3. Start the development server:
+```bash
+yarn dev
+# or
+npm run dev
+```
+
+## Usage
+
+### Basic Chart Setup
+
+```tsx
+import TestChart from './components/TestChart';
+
+const App = () => {
+  const navData = [...]; // Your candlestick data
+  const lineData = [...]; // Your line chart data
+  const indicatorsData = {
+    rsi: [...], // Your RSI data
+  };
+  
+  const selectedIndicators = [
+    {
+      id: 'rsi',
+      label: 'RSI',
+      settings: {
+        // Optional custom settings
+      }
+    }
+  ];
+
+  return (
+    <TestChart
+      navData={navData}
+      lineData={lineData}
+      indicatorsData={indicatorsData}
+      selectedIndicators={selectedIndicators}
+      chartType="candlestick"
+    />
+  );
+};
+```
+
+### Customizing Indicator Settings
+
+The chart supports various customization options for RSI indicators:
+
+```typescript
+interface IndicatorSettings {
+  plot: {
+    color: string;
+    lineStyle: 'solid' | 'dashed';
+    visible: boolean;
+  };
+  upperLimit: {
+    value: number;
+    color: string;
+    visible: boolean;
+  };
+  middleLimit: {
+    value: number;
+    color: string;
+    visible: boolean;
+  };
+  lowerLimit: {
+    value: number;
+    color: string;
+    visible: boolean;
+  };
+}
+```
+
+## Performance Optimizations
+
+- Memoized chart components and callbacks
+- Efficient state management
+- Optimized re-renders
+- Proper cleanup of chart instances
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [lightweight-charts](https://github.com/tradingview/lightweight-charts) for the charting library
+- [TradingView](https://www.tradingview.com/) for inspiration
